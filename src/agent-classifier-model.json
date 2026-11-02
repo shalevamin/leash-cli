@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "kind": "cart",
+  "features": [
+    "codexContext",
+    "claudeContext",
+    "codexExecutable",
+    "codexConfig",
+    "claudeExecutable",
+    "claudeConfig"
+  ],
+  "labels": ["codex", "claude-code", "needs-choice"],
+  "training": {
+    "scope": "64 synthetic boolean marker combinations; no prompts, keys or real-user observations",
+    "datasetSha256": "c011f429363128c73641d7f74a6e501137c8085d37c3891c0dde1eea8aeb9201",
+    "splitSeed": 7,
+    "trainingExamples": 48,
+    "heldoutExamples": 16,
+    "heldoutCorrect": 13,
+    "heldoutAccuracy": 0.8125,
+    "confusion": {
+      "codex": {
+        "codex": 1,
+        "claude-code": 0,
+        "needs-choice": 0
+      },
+      "claude-code": {
+        "codex": 0,
+        "claude-code": 9,
+        "needs-choice": 2
+      },
+      "needs-choice": {
+        "codex": 0,
+        "claude-code": 1,
+        "needs-choice": 3
+      }
+    },
+    "releaseRefitExamples": 64
+  },
+  "tree": {
+    "feature": 0,
+    "no": {
+      "feature": 1,
+      "no": {
+        "feature": 2,
+        "no": {
+          "feature": 3,
+          "no": {
+            "feature": 4,
+            "no": {
+              "feature": 5,
+              "no": {
+                "label": "needs-choice",
+                "samples": 1
+              },
+              "yes": {
+                "label": "claude-code",
+                "samples": 1
+              }
+            },
+            "yes": {
+              "label": "claude-code",
+              "samples": 2
+            }
+          },
+          "yes": {
+            "feature": 4,
+            "no": {
+              "feature": 5,
+              "no": {
+                "label": "codex",
+                "samples": 1
+              },
+              "yes": {
+                "label": "needs-choice",
+                "samples": 1
+              }
+            },
+            "yes": {
+              "label": "needs-choice",
+              "samples": 2
+            }
+          }
+        },
+        "yes": {
+          "feature": 4,
+          "no": {
+            "feature": 5,
+            "no": {
+              "label": "codex",
+              "samples": 2
+            },
+            "yes": {
+              "label": "needs-choice",
+              "samples": 2
+            }
+          },
+          "yes": {
+            "label": "needs-choice",
+            "samples": 4
+          }
+        }
+      },
+      "yes": {
+        "label": "claude-code",
+        "samples": 16
+      }
+    },
+    "yes": {
+      "feature": 1,
+      "no": {
+        "label": "codex",
+        "samples": 16
+      },
+      "yes": {
+        "label": "needs-choice",
+        "samples": 16
+      }
+    }
+  }
+}

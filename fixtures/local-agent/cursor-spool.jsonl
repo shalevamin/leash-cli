@@ -1,0 +1,2 @@
+{"v":1,"conversationId":"44444444-4444-4444-8444-444444444444","generationId":"55555555-5555-4555-8555-555555555555","model":"claude-sonnet-4-6","input":1200,"output":300,"cacheRead":5000,"cacheWrite":0,"ts":"2026-10-18T11:00:00.000Z"}
+{"v":1,"conversationId":"44444444-4444-4444-8444-444444444444","generationId":"66666666-6666-4666-8666-666666666666","model":"composer-2","input":800,"output":100,"cacheRead":0,"cacheWrite":0,"ts":"2026-10-18T11:01:00.000Z"}
