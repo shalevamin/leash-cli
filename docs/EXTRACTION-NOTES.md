@@ -1,6 +1,6 @@
 # CLI extraction notes
 
-Extracted on 2 November 2026 from private source revision `bb139d6941f2bbe2e23a5070f8cbe531a2c2d959`. The private source was read-only. This repository has a fresh Git history and no remote. No repository was created on GitHub, no push was made and no npm package was published.
+Extracted on 2 November 2026 from private source revision `bb139d6941f2bbe2e23a5070f8cbe531a2c2d959`. The private source was read-only. This repository has a fresh Git history with no commits from the private source. It is pushed to the private GitHub repository `shalevamin/leash-cli` (homepage https://useleash.dev; topics claude-code, codex, cursor, ai-agents, cost-control). It is not public and no npm package was published. GitHub secret scanning and push protection are not available while the repository is private; enable them when it is made public.
 
 ## Included
 
@@ -21,6 +21,7 @@ The monorepo benchmark, development environment script, workspace configuration,
 - `leash login` and `leash connect` now default to `https://api.useleash.dev`. Explicit compatible HTTPS APIs and loopback test APIs remain supported.
 - Legacy direct PostgreSQL sync was removed. `sync` uses an enrolled device's HTTPS transport only. A legacy database environment variable does not enable transport. Dry runs still return the local snapshot. Without enrollment the command explains how to enroll instead of claiming database sync succeeded.
 - Encrypted webhook records that depended on the server's secret decryption function are not supported. Existing saved records suppress that channel rather than silently falling back to a different URL. Explicit environment-configured Slack/Discord webhooks and their local retry queue remain supported.
+- Block messages and the saved-report notice point to the hosted dashboard at https://useleash.dev. No loopback dashboard URL is printed; `src/dashboard-url.test.ts` checks this.
 - `doctor` no longer inspects or reports hosted authentication and billing service credentials.
 - The build compiles the root package, bundles the standalone hook and copies the local sandbox egress helper. It verifies that the hook has no third-party input or external import. The sandbox source fallback is relative to this standalone repository.
 - The package is MIT, version 0.2.9, and remains `private: true`. It requires Node.js 22.13 or later. The lockfile uses pnpm 10.30.3. Esbuild was moved to 0.28 to satisfy the test tooling's peer range. The HTTP server adapter was updated to 2.1.6 and Vitest to 4.1.12 after dependency auditing; all checks were repeated with those versions.
@@ -30,13 +31,13 @@ Enforcement policy and hook cache/fail-open rules were retained. Subscription mo
 
 ## Verification
 
-- 35 test files, 291 tests passed on macOS with Node 24.22.1 and Node 22.23.4.
+- 36 test files, 293 tests passed on macOS with Node 24.22.1 and Node 22.23.4.
 - Frozen pnpm installation, typecheck, ESLint, Prettier, tests and build passed in the working checkout.
-- A fresh local Git clone passed frozen pnpm installation, typecheck, lint, all 291 tests, build and CLI smoke checks without monorepo dependencies.
-- A separate source export passed `npm install`, `npm test` (all 291 tests), `npm run build` and CLI smoke checks.
+- A fresh local Git clone passed frozen pnpm installation, typecheck, lint, all 293 tests, build and CLI smoke checks without monorepo dependencies.
+- A separate source export passed `npm install`, `npm test` (all 293 tests), `npm run build` and CLI smoke checks.
 - Smoke checks use an isolated home and a working directory outside the package. `--version` prints `0.2.9`, `--help` succeeds and signed-out `whoami` reports `Not signed in` with exit status 1.
-- The GitHub workflow covers Ubuntu and macOS, Node 22 and 24, with no secrets. Hosted CI has not run because nothing was pushed. Ubuntu execution is left to that workflow; local results are not presented as Linux results.
-- The banner is 1280 × 320 and the social preview is exactly 1280 × 640. The GIF is 6.66 seconds and 39,040 bytes. The SVGs, PNGs and representative GIF output were visually checked. The recording invokes the real compiled hook against a fresh cached mock block in an isolated home, with no network or actual agent command.
+- The GitHub workflow covers Ubuntu and macOS, Node 22 and 24, with no secrets. Hosted CI passed on GitHub for the pushed `main` branch across that matrix.
+- The banner is 1280 × 320 and the social preview is exactly 1280 × 640. The GIF is 6.62 seconds and 39,801 bytes and shows the denial reason with the https://useleash.dev dashboard link. The SVGs, PNGs and representative GIF output were visually checked. The recording invokes the real compiled hook against a fresh cached mock block in an isolated home, with no network or actual agent command.
 - `gitleaks dir .` and `gitleaks git .` passed with the default rules and no custom allowlist. Final scans include the extraction notes and all local commits.
 
 The final production dependency audit reports zero vulnerabilities. The full development audit still reports the moderate [minimatch pattern-amplification advisory](https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249) through the ESLint/TypeScript lint dependency tree. pnpm counts this as one advisory; npm counts affected packages in the tree separately. The patched minimatch major is outside those dependencies' declared ranges, so no forced transitive major override was applied. This toolchain consumes repository lint patterns, not CLI user requests. The original HTTP adapter and Vitest advisory findings were resolved by the version updates above.
@@ -135,6 +136,7 @@ src/core/token-xray.test.ts
 src/core/token-xray.ts
 src/core/usage.test.ts
 src/core/usage.ts
+src/dashboard-url.test.ts
 src/detect.ts
 src/device.test.ts
 src/device.ts
