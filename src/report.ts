@@ -123,7 +123,7 @@ export async function report(options: ReportOptions) {
           );
         } else
           console.error(
-            `Local share URL (requires dashboard and metadata sync): http://127.0.0.1:3000/r/${result.id}`,
+            `Report ${result.id} saved locally. Run leash login to enroll this device, then share it from https://useleash.dev.`,
           );
       } catch {
         console.error(

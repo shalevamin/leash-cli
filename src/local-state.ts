@@ -88,10 +88,10 @@ export async function fetchState(
 const usd = (n: number) => `$${n.toFixed(2)}`;
 export function blockMessage(s: WorkspaceState) {
   if (s.reason === "workspace_killed")
-    return "Leash stopped this agent: the workspace kill switch is on. Clear it in the Leash dashboard to continue.";
+    return "Leash stopped this agent: the workspace kill switch is on. Clear it in the Leash dashboard at https://useleash.dev to continue.";
   const b = s.reason === "monthly_budget" ? s.monthly : s.daily;
   const label = b.period === "month" ? "monthly" : "daily";
-  return `Leash stopped this agent: the workspace ${label} budget of ${usd(b.capUsd)} is used (${usd(b.spentUsd + b.reservedUsd)} metered spend). Raise the budget in the Leash dashboard or wait for the next ${b.period}.`;
+  return `Leash stopped this agent: the workspace ${label} budget of ${usd(b.capUsd)} is used (${usd(b.spentUsd + b.reservedUsd)} metered spend). Raise the budget in the Leash dashboard at https://useleash.dev or wait for the next ${b.period}.`;
 }
 function decide(s: WorkspaceState, source: Decision["source"]): Decision {
   return s.blocked

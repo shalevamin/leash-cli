@@ -1,6 +1,6 @@
 ![Leash: The circuit breaker for coding agents.](assets/banner.png)
 
-**[useleash.dev](https://useleash.dev)** · Install from source: `pnpm install && pnpm build && npm link`
+**[useleash.dev](https://useleash.dev)** · [Try the demo](https://useleash.dev/demo) · Install from source: `pnpm install && pnpm build && npm link`
 
 [![MIT license](https://img.shields.io/badge/license-MIT-F2A900?labelColor=1A1A17)](LICENSE)
 ![Version 0.2.9](https://img.shields.io/badge/version-0.2.9-F2A900?labelColor=1A1A17)

@@ -324,7 +324,7 @@ describe("blocking decisions", () => {
       },
     });
     expect(blockMessage(s)).toBe(
-      "Leash stopped this agent: the workspace daily budget of $100.00 is used ($100.50 metered spend). Raise the budget in the Leash dashboard or wait for the next day.",
+      "Leash stopped this agent: the workspace daily budget of $100.00 is used ($100.50 metered spend). Raise the budget in the Leash dashboard at https://useleash.dev or wait for the next day.",
     );
   });
 });
