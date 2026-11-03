@@ -1,30 +1,36 @@
-![Leash: The circuit breaker for coding agents.](assets/banner.png)
+![Leash: The circuit breaker for coding agents.](https://raw.githubusercontent.com/shalevamin/leash-cli/main/assets/banner.png)
 
-**[useleash.dev](https://useleash.dev)** · [Try the demo](https://useleash.dev/demo) · Install from source: `pnpm install && pnpm build && npm link`
+**[useleash.dev](https://useleash.dev)** · [Try the demo](https://useleash.dev/demo) · Install: `npm i -g useleash`
 
+[![npm version](https://img.shields.io/npm/v/useleash?color=F2A900&labelColor=1A1A17)](https://www.npmjs.com/package/useleash)
 [![MIT license](https://img.shields.io/badge/license-MIT-F2A900?labelColor=1A1A17)](LICENSE)
-![Version 0.2.9](https://img.shields.io/badge/version-0.2.9-F2A900?labelColor=1A1A17)
 [![CI](https://github.com/shalevamin/leash-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/shalevamin/leash-cli/actions/workflows/ci.yml)
 
 Leash is a circuit breaker for coding agents: Claude Code, Codex and Cursor. It tracks usage metadata, checks budgets and blocks the next prompt or tool call when the workspace is stopped.
 
-Requires Node.js 22.13 or later. Node 24 is recommended. From a checkout of this repository:
+## Install
+
+Requires Node.js 22.13 or later. Node 24 is recommended.
 
 ```sh
+npm i -g useleash
+leash --version
+leash login
+leash hooks install claude   # or codex, cursor
+```
+
+The npm package is [`useleash`](https://www.npmjs.com/package/useleash); the command it installs is `leash`. Leash is not published under any other npm name.
+
+### From source
+
+```sh
+git clone https://github.com/shalevamin/leash-cli.git
+cd leash-cli
 pnpm install --frozen-lockfile
 pnpm build
 npm link
 leash --version
 ```
-
-You can also use the compiled download described at [useleash.dev](https://useleash.dev). Its [release manifest](https://useleash.dev/downloads/manifest.json) identifies the version, archive, size and SHA-256. Verify the downloaded archive against that manifest, then install the matching version:
-
-```sh
-npm install --global --ignore-scripts --prefix "$HOME/.local" ./leash-cli-<version>.tgz
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-Replace `<version>` with the downloaded version. The manifest may point to a different release than this source checkout. This package stays `private: true` to prevent accidental npm publication.
 
 ## Connect and install hooks
 
@@ -62,7 +68,7 @@ The first start tracks usage from that point forward. `leash local start --since
 
 Local files live under `~/.leash` by default; set `LEASH_HOME` to use another directory. Signed-out hooks allow actions. A signed-out watcher can keep local metadata, but hosted budget decisions require login.
 
-![A local mock workspace kill switch causes the real Claude hook to deny a tool call.](assets/demo.gif)
+![A local mock workspace kill switch causes the real Claude hook to deny a tool call.](https://raw.githubusercontent.com/shalevamin/leash-cli/main/assets/demo.gif)
 
 The demo uses synthetic input and a cached mock block. It contacts no hosted service and runs no agent command. Re-recording instructions are in [assets/README.md](assets/README.md).
 

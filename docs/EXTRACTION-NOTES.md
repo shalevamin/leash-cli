@@ -185,3 +185,7 @@ tsconfig.build.json
 tsconfig.json
 vitest.config.ts
 ```
+
+## npm package
+
+The CLI is prepared for publication on npm as [`useleash`](https://www.npmjs.com/package/useleash) (command `leash`). It is no longer `private: true`. The `files` whitelist ships only `bin/leash.mjs`, compiled `dist/` (without source maps), `LICENSE` and `README.md`. `sharp` is an optional dependency used only for PNG reports. `prepublishOnly` cleans and rebuilds `dist/`, runs the full test suite and the CLI smoke checks. The npm name `@leash/cli` belongs to an unrelated publisher and must not be referenced.

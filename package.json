@@ -1,19 +1,57 @@
 {
-  "name": "@leash/cli",
+  "name": "useleash",
   "version": "0.2.9",
-  "private": true,
+  "description": "Circuit breaker for coding agents (Claude Code, Codex, Cursor): local usage metadata, budgets and hook-based blocking",
+  "keywords": [
+    "leash",
+    "claude-code",
+    "codex",
+    "cursor",
+    "ai-agents",
+    "coding-agents",
+    "cost-control",
+    "budget",
+    "hooks",
+    "cli"
+  ],
+  "homepage": "https://useleash.dev",
+  "bugs": {
+    "url": "https://github.com/shalevamin/leash-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shalevamin/leash-cli.git"
+  },
+  "license": "MIT",
+  "author": "Shalev Amin",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js"
   },
+  "bin": {
+    "leash": "bin/leash.mjs"
+  },
+  "files": [
+    "bin/leash.mjs",
+    "dist/",
+    "!dist/**/*.map",
+    "!dist/**/*.test.*",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/build.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "prepublishOnly": "npm run clean && npm run build && npm test && node scripts/smoke.mjs"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.6",
@@ -22,11 +60,10 @@
     "dotenv": "^16.5.0",
     "hono": "^4.8.0",
     "ignore": "7.0.12",
-    "sharp": "0.35.5",
     "typescript": "5.9.3"
   },
-  "bin": {
-    "leash": "bin/leash.mjs"
+  "optionalDependencies": {
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -37,10 +74,8 @@
     "typescript-eslint": "^8.71.1",
     "vitest": "4.1.12"
   },
-  "license": "MIT",
-  "engines": {
-    "node": ">=22.13.0"
+  "publishConfig": {
+    "access": "public"
   },
-  "packageManager": "pnpm@10.30.3",
-  "description": "Local circuit breaker and usage metadata client for coding agents"
+  "packageManager": "pnpm@10.30.3"
 }

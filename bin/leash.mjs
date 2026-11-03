@@ -11,7 +11,7 @@ if (major < 22 || (major === 22 && minor < 13)) {
 // on a fresh install. The compiled command keeps its normal argv/environment.
 if (!existsSync(new URL("../dist/index.js", import.meta.url))) {
   console.error(
-    "Leash has not been built. Run pnpm build in the repository first.",
+    "Leash has not been built. Reinstall with npm i -g useleash, or run pnpm build in a source checkout.",
   );
   process.exit(1);
 }
